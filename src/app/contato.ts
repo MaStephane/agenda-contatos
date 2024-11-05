@@ -6,16 +6,25 @@ export class Contato {
     private email: string;
     private aniversario: Date;
     private tipo: TipoContato;
+    private favorito: boolean;
 
-    constructor(nome: string, telefone: string, email: string, aniversario: Date, tipo: TipoContato) {
+    constructor(nome: string, telefone: string, email: string, aniversario: Date, tipo: TipoContato, favorito: boolean = false) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.aniversario = aniversario;
         this.tipo = tipo;
+        this.favorito = favorito;
     }
 
     // Métodos Getters e Setters
+    getFavorito(): boolean {
+        return this.favorito;
+    }
+    setFavorito(favorito: boolean): void{
+        this.favorito = favorito;
+    }
+    
     getNome(): string {
         return this.nome;
     }
