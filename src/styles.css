@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+    margin: 40px auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color:#8a5899;
+    border: 1px solid #eec8c8;
+    border-radius: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 20%;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+table {
+    width: 20%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #afafaf;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #b59ac0;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+tr:nth-child(even) {
+    background-color: #4a0f6c;
+}
+
