@@ -1,56 +1,134 @@
-<div class="container">
-    <h2>Adicionar Novo Contato</h2>
-    <form (ngSubmit)="adicionarContato()">
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" [(ngModel)]="nome" name="nome" class="form-control" required>
-        </div>
+<div class="container mt-4">
+  <h2>Adicionar Novo Contato</h2>
 
-        <div class="form-group">
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" [(ngModel)]="telefone" name="telefone" class="form-control" required>
-        </div>
+  <!-- Formulário para adicionar um novo contato -->
+  <form (ngSubmit)="adicionarContato()">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        class="form-control"
+        [(ngModel)]="novoContato.nome"
+        name="nome"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" required>
-        </div>
+    <div class="form-group">
+      <label for="telefone">Telefone:</label>
+      <input
+        type="text"
+        id="telefone"
+        class="form-control"
+        [(ngModel)]="novoContato.telefone"
+        name="telefone"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-            <label for="aniversario">Aniversário:</label>
-            <input type="date" id="aniversario" [(ngModel)]="aniversario" name="aniversario" class="form-control">
-        </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        [(ngModel)]="novoContato.email"
+        name="email"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-            <label for="tipo">Tipo de Contato:</label>
-            <select id="tipo" [(ngModel)]="tipo" name="tipo" class="form-control">
-                <option *ngFor="let tipo of tipoContatoEnum" [value]="tipo">{{ tipo }}</option>
-            </select>
-        </div>
+    <div class="form-group">
+      <label for="aniversario">Aniversário:</label>
+      <input
+        type="date"
+        id="aniversario"
+        class="form-control"
+        [(ngModel)]="novoContato.aniversario"
+        name="aniversario"
+      />
+    </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Adicionar Contato</button>
-    </form>
+    <div class="form-group">
+      <label for="tipo">Tipo de Contato:</label>
+      <select
+        id="tipo"
+        class="form-control"
+        [(ngModel)]="novoContato.tipo"
+        name="tipo"
+      >
+        <option value="Amigo">Amigo</option>
+        <option value="Familia">Família</option>
+        <option value="Trabalho">Trabalho</option>
+      </select>
+    </div>
 
-    <h3 class="mt-5">Contatos Cadastrados</h3>
-    <table class="table table-striped mt-3" *ngIf="contatos.length > 0">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Email</th>
-                <th>Aniversário</th>
-                <th>Tipo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let contato of contatos">
-                <td>{{ contato.getNome() }}</td>
-                <td>{{ contato.getTelefone() }}</td>
-                <td>{{ contato.getEmail() }}</td>
-                <td>{{ contato.getAniversario() | date }}</td>
-                <td>{{ contato.getTipo() }}</td>
-            </tr>
-        </tbody>
+    <!-- Campo de checkbox para marcar como favorito -->
+    <div class="form-group">
+      <label for="favorito">Favorito:</label>
+      <input
+        type="checkbox"
+        id="favorito"
+        class="form-check-input"
+        [(ngModel)]="novoContato.favorito"
+        name="favorito"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Adicionar Contato</button>
+  </form>
+
+  <!-- Tabela de Todos os Contatos -->
+  <div *ngIf="contatos.length > 0" class="mt-4">
+    <h3>Todos os Contatos</h3>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>Email</th>
+          <th>Aniversário</th>
+          <th>Tipo</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contato of contatos">
+          <td>{{ contato.getNome() }}</td>
+          <td>{{ contato.getTelefone() }}</td>
+          <td>{{ contato.getEmail() }}</td>
+          <td>{{ contato.getAniversario() | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ contato.getTipo() }}</td>
+          
+        </tr>
+      </tbody>
     </table>
+  </div>
+
+  <!-- Tabela de Contatos Favoritos -->
+  <div *ngIf="favoritos.length > 0" class="mt-4">
+    <h3>Contatos Favoritos</h3>
+    <table class="table table-bordered mt-3">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>Email</th>
+          <th>Aniversário</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contato of favoritos">
+          <td>{{ contato.getNome() }}</td>
+          <td>{{ contato.getTelefone() }}</td>
+          <td>{{ contato.getEmail() }}</td>
+          <td>{{ contato.getAniversario() | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ contato.getTipo() }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 

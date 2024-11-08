@@ -1,26 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AdicionaContatoComponent } from './adiciona-contato/adiciona-contato.component';
-import { ExibeContatosComponent } from './exibe-contatos/exibe-contatos.component';
-import { ExibeFavoritosComponent } from './exibe-favoritos/exibe-favoritos.component';
+import { AgendaService } from './agenda.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdicionaContatoComponent,
-    ExibeContatosComponent,
-    ExibeFavoritosComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule
+    FormsModule
   ],
-  providers: [],
+  providers: [AgendaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

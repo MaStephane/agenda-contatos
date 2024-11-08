@@ -1,36 +1,44 @@
 import { Component } from '@angular/core';
-import { Contato } from '../contato';
-import { TipoContato } from '../tipo-contato.enum';
+import { AgendaService } from '../agenda.service';
+import { Contato, TipoContato } from '../contato';
 
 @Component({
   selector: 'app-adiciona-contato',
   templateUrl: './adiciona-contato.component.html',
-  styleUrl: './adiciona-contato.component.css'
+  styleUrls: ['./adiciona-contato.component.css']
 })
 export class AdicionaContatoComponent {
-   // Lista de contatos
-   contatos: Contato[] = [];
+  novoContato: Contato;
+  contatos: Contato[] = [];
+  favoritos: Contato[] = [];
 
-   // Propriedades para o novo contato
-   nome: string = '';
-   telefone: string = '';
-   email: string = '';
-   aniversario: Date | null = null;
-   tipo: TipoContato = TipoContato.Amigo;
-   tipoContatoEnum = Object.values(TipoContato);
+  constructor(private agendaService: AgendaService) {
+    
+    this.novoContato = new Contato('', '', '', new Date(), TipoContato.Amigo, false);
+  }
 
-   // Método para adicionar contato à lista
-   adicionarContato() {
-       const novoContato = new Contato(this.nome, this.telefone, this.email, this.aniversario!, this.tipo);
-       this.contatos.push(novoContato);
-       this.limparFormulario();
+  
+  adicionarContato(): void {
+    if (this.novoContato.getNome() && this.novoContato.getTelefone() && this.novoContato.getEmail()) {
+      
+      this.agendaService.adicionarContato(this.novoContato);
+      
+      this.contatos = this.agendaService.obterContatos();
+      
+      
+      if (this.novoContato.getFavorito()) {
+        this.favoritos.push(this.novoContato);
+      }
+
+      
+      this.novoContato = new Contato('', '', '', new Date(), TipoContato.Amigo, false);
+    } else {
+      alert('Todos os campos são obrigatórios.');
     }
+  }
 
-    limparFormulario() {
-        this.nome = '';
-        this.telefone = '';
-        this.email = '';
-        this.aniversario = null;
-        this.tipo = TipoContato.Amigo;
-    }
+  
+  atualizarFavoritos(): void {
+    this.favoritos = this.contatos.filter(contato => contato.getFavorito() === true);
+  }
 }

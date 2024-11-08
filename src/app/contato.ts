@@ -1,67 +1,64 @@
-import { TipoContato } from './tipo-contato.enum';
+export enum TipoContato {
+  Amigo = 'Amigo',
+  Familia = 'Família',
+  Trabalho = 'Trabalho',
+}
 
 export class Contato {
-    private nome: string;
-    private telefone: string;
-    private email: string;
-    private aniversario: Date;
-    private tipo: TipoContato;
-    private favorito: boolean;
+  constructor(
+    public nome: string,
+    public telefone: string,
+    public email: string,
+    public aniversario: Date,
+    public tipo: TipoContato,
+    public favorito: boolean = false
+  ) {}
 
-    constructor(nome: string, telefone: string, email: string, aniversario: Date, tipo: TipoContato, favorito: boolean = false) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.aniversario = aniversario;
-        this.tipo = tipo;
-        this.favorito = favorito;
-    }
+  getNome(): string {
+    return this.nome;
+  }
 
-    // Métodos Getters e Setters
-    getFavorito(): boolean {
-        return this.favorito;
-    }
-    setFavorito(favorito: boolean): void{
-        this.favorito = favorito;
-    }
-    
-    getNome(): string {
-        return this.nome;
-    }
+  getTelefone(): string {
+    return this.telefone;
+  }
 
-    setNome(nome: string): void {
-        this.nome = nome;
-    }
+  getEmail(): string {
+    return this.email;
+  }
 
-    getTelefone(): string {
-        return this.telefone;
-    }
+  getAniversario(): Date {
+    return this.aniversario;
+  }
 
-    setTelefone(telefone: string): void {
-        this.telefone = telefone;
-    }
+  getTipo(): TipoContato {
+    return this.tipo;
+  }
 
-    getEmail(): string {
-        return this.email;
-    }
+  getFavorito(): boolean {
+    return this.favorito;
+  }
 
-    setEmail(email: string): void {
-        this.email = email;
-    }
+  setNome(nome: string): void {
+    this.nome = nome;
+  }
 
-    getAniversario(): Date {
-        return this.aniversario;
-    }
+  setTelefone(telefone: string): void {
+    this.telefone = telefone;
+  }
 
-    setAniversario(aniversario: Date): void {
-        this.aniversario = aniversario;
-    }
+  setEmail(email: string): void {
+    this.email = email;
+  }
 
-    getTipo(): TipoContato {
-        return this.tipo;
-    }
+  setAniversario(aniversario: Date): void {
+    this.aniversario = aniversario;
+  }
 
-    setTipo(tipo: TipoContato): void {
-        this.tipo = tipo;
-    }
+  setTipo(tipo: TipoContato): void {
+    this.tipo = tipo;
+  }
+
+  setFavorito(favorito: boolean): void {
+    this.favorito = favorito;
+  }
 }
